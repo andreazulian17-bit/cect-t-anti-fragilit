@@ -1,0 +1,18 @@
+{
+  "agente_A_alto_KP": {
+    "kp_post_shock": 3.1959958837660336,
+    "integrity_post_shock": 0.72,
+    "success_rate_recupero": 0.0,
+    "kp_finale_recupero": 4.351409055715405,
+    "integrity_finale_recupero": 0.9210720000000002,
+    "vitalita_finale_recupero": 0.7144824000000001
+  },
+  "agente_B_basso_KP": {
+    "kp_post_shock": 1.7105049620294395,
+    "integrity_post_shock": 0.5268240000000004,
+    "success_rate_recupero": 0.0,
+    "kp_finale_recupero": 2.8894485389568367,
+    "integrity_finale_recupero": 0.7278960000000007,
+    "vitalita_finale_recupero": 0.6275532000000004
+  }
+}

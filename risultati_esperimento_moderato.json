@@ -1,0 +1,20 @@
+{
+  "agente_A_appreso_in_mite": {
+    "kp_finale_apprendimento": 3.2959958837660333,
+    "success_rate_apprendimento": 0.75,
+    "kp_finale_perturbazione": 4.05812596562948,
+    "success_rate_perturbazione": 0.0,
+    "vitalita_finale_perturbazione": 0.6798216000000001,
+    "integrity_finale_perturbazione": 0.8440480000000004,
+    "negative_kp_episodes": 2
+  },
+  "agente_B_appreso_in_severo": {
+    "kp_finale_apprendimento": 1.8105049620294396,
+    "success_rate_apprendimento": 0.5,
+    "kp_finale_perturbazione": 2.546529924395127,
+    "success_rate_perturbazione": 0.0,
+    "vitalita_finale_perturbazione": 0.5928924000000003,
+    "integrity_finale_perturbazione": 0.6508720000000007,
+    "negative_kp_episodes": 2
+  }
+}

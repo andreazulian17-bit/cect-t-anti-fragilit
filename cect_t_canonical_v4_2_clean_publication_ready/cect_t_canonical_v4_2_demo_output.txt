@@ -1,0 +1,17 @@
+{
+  "plan_success": true,
+  "plan_admissibility": "possible",
+  "plan_kp_delta": 0.8145146335669534,
+  "held_contracts": {
+    "warm_ready": 2,
+    "stable": 3
+  },
+  "family_impossibility_status": "certified_impossible",
+  "family_impossibility_confidence": 0.9900000000000001,
+  "persistence_status": "certified_persistent",
+  "persistence_confidence": 0.84125,
+  "persistence_success_rate": 0.75,
+  "persistence_final_viability": 0.75,
+  "final_constructor_integrity": 1.0,
+  "final_constructor_kp": 3.294909336007996
+}

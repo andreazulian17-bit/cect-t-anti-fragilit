@@ -1,0 +1,18 @@
+{
+  "agente_A_alto_KP": {
+    "kp_iniziale_opportunita": 3.2959958837660333,
+    "kp_finale_opportunita": 5.739283837078557,
+    "delta_kp": 2.443287953312524,
+    "success_rate_opportunita": 0.0,
+    "vitalita_finale": 0.7604,
+    "integrity_finale": 1.0
+  },
+  "agente_B_basso_KP": {
+    "kp_iniziale_opportunita": 1.8105049620294396,
+    "kp_finale_opportunita": 4.27010983220782,
+    "delta_kp": 2.45960487017838,
+    "success_rate_opportunita": 0.0,
+    "vitalita_finale": 0.7604,
+    "integrity_finale": 1.0
+  }
+}

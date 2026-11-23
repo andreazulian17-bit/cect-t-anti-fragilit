@@ -1,0 +1,34 @@
+{
+  "persistence_certified_mild": {
+    "status": "certified_persistent",
+    "confidence": 0.84125,
+    "success_rate": 0.75,
+    "final_viability": 0.75,
+    "mean_viability": 0.83125
+  },
+  "persistence_blocked_severe": {
+    "status": "not_certified",
+    "confidence": 0.70356755,
+    "success_rate": 0.5,
+    "final_viability": 0.6634708000000001,
+    "negative_kp_episodes": 1
+  },
+  "persistence_blocked_low_diversity": {
+    "status": "not_certified",
+    "context_diversity": 1,
+    "note": "insufficient context diversity"
+  },
+  "family_impossibility_retained": {
+    "status": "certified_impossible",
+    "confidence": 0.9900000000000001,
+    "shared_reason_classes": [
+      "domain_law",
+      "relational"
+    ]
+  },
+  "choice_avoids_impossible_retained": {
+    "success": true,
+    "chosen_recipe": "warm_specialist",
+    "admissibility": "possible"
+  }
+}
