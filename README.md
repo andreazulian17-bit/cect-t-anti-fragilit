@@ -52,6 +52,7 @@ Il trittico sperimentale (shock severo, shock moderato, recupero atomico) suppor
 - `esperimento_moderato.py`: Script per lo shock moderato.
 - `esperimento_recupero.py`: Script per il test di recupero post-shock.
 - `esperimento_passo_avanti.py`: Script per il test del compito atomico post-shock.
+- `esperimento_curiosity.py`: Script per il test dell'esplorazione (curiosità).
 - `*.json`: I risultati numerici grezzi delle simulazioni.
 
 ## Come Riprodurre gli Esperimenti
@@ -64,3 +65,19 @@ Il trittico sperimentale (shock severo, shock moderato, recupero atomico) suppor
    python esperimento_moderato.py
    python esperimento_recupero.py
    python esperimento_passo_avanti.py
+    ```
+## Esplorazione e Curiosità (Collegamento a Rainbow-IQN)
+
+Influenzati dall'architettura di agenti all'avanguardia come Rainbow-IQN (che utilizza la Random Network Distillation per premiare la scoperta di stati nuovi), abbiamo voluto testare se l'**esplorazione caotica** (la "curiosità") potesse costruire una resilienza strutturale paragonabile a quella ottenuta con l'apprendimento specializzato.
+
+**Metodologia:**
+Abbiamo creato un "Agente Curioso" che, durante la fase di apprendimento, ha esplorato temperature estreme (da 0.10 a 0.25), senza seguire un piano sequenziale rigido. Successivamente, lo abbiamo sottoposto allo stesso shock severo degli altri agenti.
+
+**Risultati:**
+- **KP di apprendimento:** `2.21` (molto più basso rispetto all'Agente A specializzato, che aveva `3.29`).
+- **Integrità post-shock:** `0.73` (identica all'Agente A, nettamente superiore all'Agente B).
+- **Integrità finale recupero:** `0.93`.
+- **Vitalità finale:** `0.72`.
+
+**Interpretazione:**
+Nonostante l'Agente Curioso abbia fallito il compito durante l'apprendimento (success rate = 0.0), la sua **diversità esperienziale** gli ha conferito una resilienza strutturale sorprendente, praticamente identica a quella dell'Agente A. Questo suggerisce che, in linea con il concetto di "Possibile Adiacente" di Kauffman, non è solo *quanta* conoscenza si accumula (il livello di KP), ma *dove* la si esplora. L'esplorazione dei bordi del dominio ha fornito all'agente una "mappa" strutturale che lo ha protetto dallo shock, proprio come l'esplorazione intrinseca (RND) di Rainbow-IQN prepara l'agente a sopravvivere in mondi aperti e incerti (come Crafter).
