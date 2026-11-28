@@ -81,3 +81,37 @@ Abbiamo creato un "Agente Curioso" che, durante la fase di apprendimento, ha esp
 
 **Interpretazione:**
 Nonostante l'Agente Curioso abbia fallito il compito durante l'apprendimento (success rate = 0.0), la sua **diversità esperienziale** gli ha conferito una resilienza strutturale sorprendente, praticamente identica a quella dell'Agente A. Questo suggerisce che, in linea con il concetto di "Possibile Adiacente" di Kauffman, non è solo *quanta* conoscenza si accumula (il livello di KP), ma *dove* la si esplora. L'esplorazione dei bordi del dominio ha fornito all'agente una "mappa" strutturale che lo ha protetto dallo shock, proprio come l'esplorazione intrinseca (RND) di Rainbow-IQN prepara l'agente a sopravvivere in mondi aperti e incerti (come Crafter).
+
+## Controllo Controfattuale: La Certificazione Non Conferisce Resilienza
+
+In un test preliminare (non riportato in precedenza), era emerso un apparente vantaggio strutturale per un agente che certificava una capacità (`warm_cert`) prima di subire uno shock. Tuttavia, un'analisi più rigorosa ha rivelato che quel risultato era un **artefatto metodologico**.
+
+### La falla nel test preliminare
+1. **Il piano di certificazione non veniva mai eseguito**: la `CertifyPlan` era incatenata a un `AtomicPlan` tramite un `SeqPlan`. Il controllo di continuità (`handoff_score`) falliva con `contract_chain_unsatisfied`, impedendo l'esecuzione della certificazione.
+2. **Parametri di shock non comparabili**: il test preliminare usava uno shock con `substrate_shift=0.10`, mentre il controllo usava `substrate_shift=0.12`. La differenza di integrità era dovuta a questo, non alla certificazione.
+
+### Il controllo corretto
+Abbiamo eseguito un esperimento controllato in cui la certificazione avviene in un episodio dedicato (non incatenata), con un'asserzione esplicita che interrompe il test se `warm_cert` non è acquisita. Gruppo A (con certificazione) e Gruppo B (senza) partono dallo stesso stato e subiscono lo stesso shock.
+
+**Risultati:**
+| Metrica | Gruppo A (con cert.) | Gruppo B (senza cert.) | Differenza |
+| :--- | :--- | :--- | :--- |
+| Capacità acquisita | `true` | `false` | - |
+| Integrità pre-shock | `1.0` | `1.0` | `0.0` |
+| KP pre-shock | `1.595` | `1.595` | `0.0` |
+| Integrità post-shock | `0.754` | `0.754` | `0.0` |
+| KP post-shock | `2.439` | `2.439` | `0.0` |
+| Capacità attiva post-shock | `true` | `false` | - |
+
+### Il meccanismo (dal codice)
+La differenza è esattamente zero. La `CapabilityCertificate` viene creata e sopravvive allo shock, ma è un **oggetto inerte**. Il motore cECT-T non ha alcun percorso che legga `state.capabilities` durante:
+- `update_state_after_step` (calcolo di integrità e KP)
+- `_apply_context_to_state` (applicazione dello shock)
+- `_maintenance_step` (ripristino tra episodi)
+
+La capacità non modula le scelte di `select_recipe`, non altera le soglie di `structural_admissibility`, e non influenza la memoria. È un'etichetta di validazione, non un'informazione operativa.
+
+### Conclusione
+**La certificazione di una capacità in cECT-T non ha alcun effetto causale sulla resilienza strutturale a uno shock successivo.** Il framework non supporta un'agency basata sulle capacità: esegue piani predefiniti e valuta l'ammissibilità in base allo stato corrente, non alla storia delle certificazioni. Per simulare una vera anti-fragilità indotta dall'apprendimento, sarebbe necessario un intervento architetturale (ad esempio, far sì che `structural_admissibility` richieda una capacità certificata per accettare un piano, o che `update_state_after_step` dia un bonus di integrità se la capacità è attiva).
+
+Questo risultato negativo è prezioso: delimita con precisione ciò che il framework può e non può fare, e impedisce di attribuire a cECT-T proprietà che non possiede.
