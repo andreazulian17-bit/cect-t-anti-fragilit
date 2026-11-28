@@ -1,0 +1,20 @@
+{
+  "gruppo_con_certificazione": {
+    "capacita_acquisita": true,
+    "integrita_pre_shock": 1.0,
+    "kp_pre_shock": 1.595133597818854,
+    "integrita_post_shock": 0.7540480000000002,
+    "kp_post_shock": 2.4391644920318973,
+    "capacita_attiva_dopo_shock": true
+  },
+  "gruppo_senza_certificazione": {
+    "capacita_acquisita": false,
+    "integrita_pre_shock": 1.0,
+    "kp_pre_shock": 1.595133597818854,
+    "integrita_post_shock": 0.7540480000000002,
+    "kp_post_shock": 2.4391644920318973,
+    "capacita_attiva_dopo_shock": false
+  },
+  "differenza_integrita_post_shock": 0.0,
+  "differenza_kp_post_shock": 0.0
+}
